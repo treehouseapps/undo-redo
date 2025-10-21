@@ -76,4 +76,5 @@ h2 {
     padding: 10px;
     border-left: 1px solid red;
     word-wrap: break-word;
+    cursor: pointer;
 }

@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emoji Undo/Redo</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -23,7 +24,7 @@
       <button id="redoBtn">Redo</button>
     </div>
     <div class="container">
-      <div class="mini">
+      <div class="mini" id="box">
         <div id="undo-result"></div>
         <div id="redo-result"></div>
       </div>
@@ -36,6 +37,7 @@
     const redoBtn = document.getElementById('redoBtn');
     const undo = document.getElementById('undo-result');
     const redo = document.getElementById('redo-result');
+    const box = document.getElementById('box');
 
 
 
@@ -44,6 +46,7 @@
 
     input.addEventListener('input', () => {
       history.push(input.value);
+      undoFun()
       redoStack = [];
     });
 
@@ -83,6 +86,10 @@
         redo.appendChild(p)
       });
     }
+    box.addEventListener('click', (event) => {
+      input.value = event.target.innerText
+      history.push = event.target.innerText
+    })
   </script>
 </body>
 
