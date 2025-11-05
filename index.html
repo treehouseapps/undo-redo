@@ -40,12 +40,13 @@
     const box = document.getElementById('box');
 
 
-
+    let mainStack = []
     let history = [];
     let redoStack = [];
 
     input.addEventListener('input', () => {
       history.push(input.value);
+      mainStack.push(input.value);
       undoFun()
       redoStack = [];
     });
@@ -88,7 +89,7 @@
     }
     box.addEventListener('click', (event) => {
       input.value = event.target.innerText
-      history.push = event.target.innerText
+      history.push(event.target.innerText)
     })
   </script>
 </body>
