@@ -71,17 +71,19 @@
     });
     function undoFun() {
       undo.innerHTML = ''
-      history.forEach(element => {
+      history.forEach((element, index) => {
         let p = document.createElement('p')
         p.innerText = element
+        if (index === history.length - 1) p.classList.add('active');
         undo.appendChild(p)
       });
     }
     function redoFun() {
       redo.innerHTML = ''
-      redoStack.forEach(element => {
+      redoStack.forEach((element, index) => {
         let p = document.createElement('p')
         p.innerText = element
+        if (index === redoStack.length - 1) p.classList.add('active');
         redo.appendChild(p)
       });
     }
