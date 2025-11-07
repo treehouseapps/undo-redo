@@ -42,9 +42,11 @@
 
     let history = [];
     let redoStack = [];
+    let currentValue = null
 
     input.addEventListener('input', () => {
       history.push(input.value);
+      currentValue = input.value
       undoFun()
       redoStack = [];
     });
@@ -56,6 +58,7 @@
       } else {
         input.value = '';
       }
+      currentValue = input.value
       undoFun()
       redoFun()
     });
@@ -66,6 +69,7 @@
         history.push(value);
         input.value = value;
       }
+      currentValue = input.value
       redoFun()
       undoFun()
     });
@@ -74,7 +78,7 @@
       history.forEach((element, index) => {
         let p = document.createElement('p')
         p.innerText = element
-        if (index === history.length - 1) p.classList.add('active');
+        if (element === currentValue) p.classList.add('active');
         undo.appendChild(p)
       });
     }
@@ -83,13 +87,15 @@
       redoStack.forEach((element, index) => {
         let p = document.createElement('p')
         p.innerText = element
-        if (index === redoStack.length - 1) p.classList.add('active');
+        if (element === currentValue) p.classList.add('active');
         redo.appendChild(p)
       });
     }
     box.addEventListener('click', (event) => {
-      input.value = event.target.innerText
-      history.push(event.target.innerText)
+      input.value = event.target.innerText;
+      history.push(event.target.innerText);
+      activeValue = input.value;
+      undoFun();
     })
   </script>
 </body>
